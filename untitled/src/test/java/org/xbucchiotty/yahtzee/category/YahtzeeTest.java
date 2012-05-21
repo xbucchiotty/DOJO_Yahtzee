@@ -16,13 +16,13 @@ public class YahtzeeTest {
     @Test
     public void should_score_50() {
         Score givenScore_yahtzee = new Score(1, 1, 1, 1, 1);
-        assertThat(givenScore_yahtzee.registerInCategory(new Yahtzee())).isEqualTo(50);
+        assertThat(givenScore_yahtzee.registerInCategory(Categories.yahtzee())).isEqualTo(50);
     }
 
     @Test
     public void should_score_0() {
         Score givenScore_yahtzee = new Score(2, 1, 1, 1, 1);
-        assertThat(givenScore_yahtzee.registerInCategory(new Yahtzee())).isEqualTo(0);
+        assertThat(givenScore_yahtzee.registerInCategory(Categories.yahtzee())).isEqualTo(0);
     }
 
     @Test

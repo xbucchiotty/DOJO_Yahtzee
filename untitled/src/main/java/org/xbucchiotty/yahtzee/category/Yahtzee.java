@@ -1,9 +1,8 @@
 package org.xbucchiotty.yahtzee.category;
 
 import com.google.common.base.Predicate;
+import org.xbucchiotty.yahtzee.Functions;
 import org.xbucchiotty.yahtzee.score.Score;
-
-import javax.annotation.Nullable;
 
 import static com.google.common.collect.Iterables.all;
 import static java.util.Arrays.asList;
@@ -24,19 +23,7 @@ public class Yahtzee implements Category {
     }
 
     static Predicate<Integer> sameScore() {
-        return new Predicate<Integer>() {
-            private Integer firstElement;
-
-            @Override
-            public boolean apply(@Nullable Integer integer) {
-                if (firstElement == null) {
-                    firstElement = integer;
-
-                }
-                return firstElement != null && firstElement.equals(integer);
-            }
-
-        };
+        return Functions.sameElement();
     }
 
     @Override
