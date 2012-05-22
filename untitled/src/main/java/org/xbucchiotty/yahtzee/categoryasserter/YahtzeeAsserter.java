@@ -6,7 +6,6 @@ import org.xbucchiotty.yahtzee.Points;
 import org.xbucchiotty.yahtzee.Roll;
 
 import static com.google.common.collect.Iterables.all;
-import static java.util.Arrays.asList;
 
 /**
  * User: xbucchiotty
@@ -19,7 +18,7 @@ public class YahtzeeAsserter implements CategoryAsserter {
     private static final int SCORE = 50;
 
     boolean isRuleStatisfied(Roll roll) {
-        return all(asList(roll.getRolls()), YahtzeeAsserter.sameScore());
+        return all(roll.getRolls(), sameScore());
     }
 
     static Predicate<Integer> sameScore() {
