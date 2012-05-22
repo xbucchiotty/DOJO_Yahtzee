@@ -1,6 +1,7 @@
 package org.xbucchiotty.yahtzee;
 
 import com.google.common.base.Predicate;
+import org.xbucchiotty.utils.function.Reducer;
 
 import javax.annotation.Nullable;
 
@@ -26,4 +27,21 @@ public abstract class Functions {
 
         };
     }
+
+    public static Reducer<Integer, Integer> sum() {
+        return new Reducer<Integer, Integer>() {
+            private Integer sum = 0;
+
+            @Override
+            public void agrege(Integer integer) {
+                sum += integer;
+            }
+
+            @Override
+            public Integer getResult() {
+                return sum;
+            }
+        };
+    }
+
 }

@@ -1,13 +1,35 @@
 package org.xbucchiotty.yahtzee.category;
 
-import org.xbucchiotty.yahtzee.score.Score;
+import org.xbucchiotty.yahtzee.Points;
+import org.xbucchiotty.yahtzee.Roll;
+import org.xbucchiotty.yahtzee.categoryasserter.CategoryAsserter;
+
+import javax.validation.constraints.NotNull;
+
+import static com.google.common.base.Preconditions.checkArgument;
 
 /**
  * User: xbucchiotty
  * Date: 21/05/12
- * Time: 09:13
+ * Time: 19:10
  */
-public interface Category {
+public class Category {
 
-    Integer register(Score score);
+    private final CategoryAsserter asserter;
+    private final Points points;
+
+    public Category(@NotNull CategoryAsserter asserter) {
+        checkArgument(asserter != null);
+
+        this.asserter = asserter;
+        this.points = new Points();
+    }
+
+    public void registerRoll(Roll roll) {
+        points.setPoints(asserter.givePoints(roll));
+    }
+
+    public Integer getPoints() {
+        return points.getPoints();
+    }
 }
