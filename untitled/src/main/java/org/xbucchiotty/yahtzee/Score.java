@@ -1,7 +1,6 @@
 package org.xbucchiotty.yahtzee;
 
 import org.xbucchiotty.utils.function.Converter;
-import org.xbucchiotty.yahtzee.category.Category;
 
 import java.util.Collection;
 import java.util.HashMap;

@@ -1,7 +1,5 @@
-package org.xbucchiotty.yahtzee.category;
+package org.xbucchiotty.yahtzee;
 
-import org.xbucchiotty.yahtzee.Points;
-import org.xbucchiotty.yahtzee.Roll;
 import org.xbucchiotty.yahtzee.categoryasserter.CategoryAsserter;
 
 import javax.validation.constraints.NotNull;
