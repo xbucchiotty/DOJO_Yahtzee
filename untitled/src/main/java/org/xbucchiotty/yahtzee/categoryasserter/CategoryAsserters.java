@@ -1,5 +1,6 @@
 package org.xbucchiotty.yahtzee.categoryasserter;
 
+import static org.xbucchiotty.yahtzee.categoryasserter.CategoryAsserter.*;
 import static org.xbucchiotty.yahtzee.categoryasserter.SerieAsserter.Serie;
 
 /**
@@ -8,11 +9,6 @@ import static org.xbucchiotty.yahtzee.categoryasserter.SerieAsserter.Serie;
  * Time: 18:46
  */
 public class CategoryAsserters {
-
-    private static final int PAIR = 2;
-    private static final int THREE_OF_KIND = 3;
-    private static final int FOUR_OF_KIND = 4;
-
 
     public static CategoryAsserter yahtzee() {
         return new YahtzeeAsserter();
@@ -39,6 +35,10 @@ public class CategoryAsserters {
     }
 
     public static CategoryAsserter twoPairs() {
-        return new TwoPairsAsserters();
+        return new TwoPairsAsserter();
+    }
+
+    public static CategoryAsserter fullHouse() {
+        return new FullHouseAsserter();
     }
 }

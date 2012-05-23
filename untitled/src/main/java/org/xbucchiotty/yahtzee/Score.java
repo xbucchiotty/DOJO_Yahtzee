@@ -1,7 +1,6 @@
 package org.xbucchiotty.yahtzee;
 
 import org.xbucchiotty.utils.function.Converter;
-import org.xbucchiotty.yahtzee.categoryasserter.CategoryAsserters;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -29,7 +28,8 @@ public class Score {
     private final Category pair = new Category(pair());
     private final Category threeOfKind = new Category(threeOfKind());
     private final Category fourOfKind = new Category(fourOfKind());
-    private final Category twoPairs = new Category(CategoryAsserters.twoPairs());
+    private final Category twoPairs = new Category(twoPairs());
+    private final Category fullHouse = new Category(fullHouse());
 
     public Score() {
         series = new HashMap<Serie, Category>();
@@ -84,7 +84,11 @@ public class Score {
     }
 
     public void scoreTwoPairs(Roll roll) {
-        registerScore(roll,twoPairs);
+        registerScore(roll, twoPairs);
+    }
+
+    public void scoreFullHouse(Roll roll) {
+        registerScore(roll, fullHouse);
     }
 
     void registerScore(Roll roll, Category category) {

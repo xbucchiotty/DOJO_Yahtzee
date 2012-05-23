@@ -170,13 +170,23 @@ public class ScoreTest {
     }
 
     @Test
-    public void should_score_two_pairs_of_two_and_five(){
-        Roll givenRollWithPairOfTwoAndFive = new Roll(2,2,5,1,5);
+    public void should_score_two_pairs_of_two_and_five() {
+        Roll givenRollWithPairOfTwoAndFive = new Roll(2, 2, 5, 1, 5);
         Score scoreFourteen = new Score();
-        
+
         scoreFourteen.scoreTwoPairs(givenRollWithPairOfTwoAndFive);
-        
+
         assertThat(scoreFourteen.getTotalScore()).isEqualTo(14);
+    }
+
+    @Test
+    public void should_score_full_house() {
+        Roll givenRollWithFullHouse = new Roll(1, 1, 2, 2, 2);
+        Score scoreEight = new Score();
+
+        scoreEight.scoreFullHouse(givenRollWithFullHouse);
+
+        assertThat(scoreEight.getTotalScore()).isEqualTo(8);
     }
 
     @Test

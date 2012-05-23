@@ -9,5 +9,10 @@ import org.xbucchiotty.yahtzee.Roll;
  */
 public interface CategoryAsserter {
 
+    int PAIR = 2;
+    int TWO = 2;
+    int THREE_OF_KIND = 3;
+    int FOUR_OF_KIND = 4;
+
     Integer givePoints(Roll roll);
 }
