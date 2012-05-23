@@ -170,6 +170,16 @@ public class ScoreTest {
     }
 
     @Test
+    public void should_score_two_pairs_of_two_and_five(){
+        Roll givenRollWithPairOfTwoAndFive = new Roll(2,2,5,1,5);
+        Score scoreFourteen = new Score();
+        
+        scoreFourteen.scoreTwoPairs(givenRollWithPairOfTwoAndFive);
+        
+        assertThat(scoreFourteen.getTotalScore()).isEqualTo(14);
+    }
+
+    @Test
     public void testRegisterScore() {
         Category mock = spy(new Category(mock(CategoryAsserter.class)));
         Roll roll = new Roll(1, 1, 1, 1, 1);

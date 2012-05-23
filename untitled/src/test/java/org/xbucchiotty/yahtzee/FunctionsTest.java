@@ -2,9 +2,13 @@ package org.xbucchiotty.yahtzee;
 
 import com.google.common.base.Optional;
 import com.google.common.base.Predicate;
+import com.google.common.collect.Multiset;
 import org.junit.Test;
 import org.xbucchiotty.utils.function.Reducer;
 
+import java.util.Set;
+
+import static com.google.common.collect.Multisets.immutableEntry;
 import static org.fest.assertions.Assertions.assertThat;
 
 /**
@@ -39,5 +43,28 @@ public class FunctionsTest {
         highest.agrege(-1);
 
         assertThat(highest.getResult().get()).isEqualTo(4);
+    }
+
+    @Test
+    public void testExtractRoll() {
+        assertThat(Functions.extractPoints().convert(getData(1, 5))).isEqualTo(5);
+    }
+
+    @Test
+    public void testGroupRollByValue() {
+        Set<Multiset.Entry<Integer>> result = Functions.groupRollByValue().convert(new Roll(1, 1, 2, 3, 4));
+        assertThat(result)
+                .isNotNull()
+                .hasSize(4)
+                .contains(
+                        getData(1, 2),
+                        getData(2, 1),
+                        getData(3, 1),
+                        getData(4, 1)
+                );
+    }
+
+    private Multiset.Entry<Integer> getData(Integer element, int count) {
+        return immutableEntry(element, count);
     }
 }

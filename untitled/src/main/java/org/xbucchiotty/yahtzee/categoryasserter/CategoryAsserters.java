@@ -37,4 +37,8 @@ public class CategoryAsserters {
     public static CategoryAsserter fourOfKind() {
         return new KindAsserter(FOUR_OF_KIND);
     }
+
+    public static CategoryAsserter twoPairs() {
+        return new TwoPairsAsserters();
+    }
 }

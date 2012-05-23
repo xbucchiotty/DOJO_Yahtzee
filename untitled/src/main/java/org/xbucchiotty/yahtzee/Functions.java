@@ -2,9 +2,13 @@ package org.xbucchiotty.yahtzee;
 
 import com.google.common.base.Optional;
 import com.google.common.base.Predicate;
+import com.google.common.collect.ImmutableMultiset;
+import com.google.common.collect.Multiset;
+import org.xbucchiotty.utils.function.Converter;
 import org.xbucchiotty.utils.function.Reducer;
 
 import javax.annotation.Nullable;
+import java.util.Set;
 
 import static com.google.common.base.Optional.fromNullable;
 
@@ -68,6 +72,24 @@ public abstract class Functions {
             @Override
             public Optional<E> getResult() {
                 return Optional.fromNullable(highestElement);
+            }
+        };
+    }
+
+    public static Converter<Multiset.Entry<Integer>, Integer> extractPoints() {
+        return new Converter<Multiset.Entry<Integer>, Integer>() {
+            @Override
+            public Integer convert(Multiset.Entry<Integer> input) {
+                return input.getElement() * input.getCount();
+            }
+        };
+    }
+
+    public static Converter<Roll, Set<Multiset.Entry<Integer>>> groupRollByValue() {
+        return new Converter<Roll, Set<Multiset.Entry<Integer>>>() {
+            @Override
+            public Set<Multiset.Entry<Integer>> convert(Roll roll) {
+                return ImmutableMultiset.<Integer>builder().addAll(roll.getRolls()).build().entrySet();
             }
         };
     }
