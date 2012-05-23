@@ -2,6 +2,8 @@ package org.xbucchiotty.yahtzee.categoryasserter;
 
 import static org.xbucchiotty.yahtzee.categoryasserter.CategoryAsserter.*;
 import static org.xbucchiotty.yahtzee.categoryasserter.SerieAsserter.Serie;
+import static org.xbucchiotty.yahtzee.categoryasserter.StraightAsserter.LARGE_STRAIGHT;
+import static org.xbucchiotty.yahtzee.categoryasserter.StraightAsserter.SMALL_STRAIGHT;
 
 /**
  * User: xbucchiotty
@@ -43,6 +45,10 @@ public class CategoryAsserters {
     }
 
     public static CategoryAsserter smallStraight() {
-        return new SmallStraightAsserter();
+        return new StraightAsserter(SMALL_STRAIGHT);
+    }
+
+    public static CategoryAsserter largeStraight() {
+        return new StraightAsserter(LARGE_STRAIGHT);
     }
 }

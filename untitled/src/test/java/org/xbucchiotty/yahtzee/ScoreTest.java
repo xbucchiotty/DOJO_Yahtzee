@@ -196,7 +196,17 @@ public class ScoreTest {
         Score scoreFifteen = new Score();
         scoreFifteen.scoreSmallStraight(givenRollWithSmallStraight);
 
-        assertThat(scoreFifteen).isEqualTo(15);
+        assertThat(scoreFifteen.getTotalScore()).isEqualTo(15);
+    }
+
+    @Test
+    public void should_score_large_straight() {
+        Roll givenRollWithSmallStraight = new Roll(2, 3, 4, 5, 6);
+
+        Score scoreFifteen = new Score();
+        scoreFifteen.scoreLargeStraight(givenRollWithSmallStraight);
+
+        assertThat(scoreFifteen.getTotalScore()).isEqualTo(20);
     }
 
     @Test
