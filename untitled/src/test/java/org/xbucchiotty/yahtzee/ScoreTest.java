@@ -131,12 +131,42 @@ public class ScoreTest {
 
     @Test
     public void should_score_pairOf5() {
-        Roll givenRollWithOneSix = new Roll(1, 1, 5, 5, 6);
-        Score scoreSix = new Score();
+        Roll givenRollWithPairOfFive = new Roll(1, 1, 5, 5, 6);
+        Score scoreTen = new Score();
 
-        scoreSix.scorePair(givenRollWithOneSix);
+        scoreTen.scorePair(givenRollWithPairOfFive);
 
-        assertThat(scoreSix.getTotalScore()).isEqualTo(10);
+        assertThat(scoreTen.getTotalScore()).isEqualTo(10);
+    }
+
+    @Test
+    public void should_score_threeOfKind6() {
+        Roll givenRollWithThreeSix = new Roll(1, 2, 6, 6, 6);
+        Score scoreEighteen = new Score();
+
+        scoreEighteen.scoreThreeOfKind(givenRollWithThreeSix);
+
+        assertThat(scoreEighteen.getTotalScore()).isEqualTo(18);
+    }
+
+    @Test
+    public void should_score_fourOfFour() {
+        Roll givenRollWithFourFour = new Roll(4, 4, 4, 6, 4);
+        Score scoreSixteen = new Score();
+
+        scoreSixteen.scoreFourOfKind(givenRollWithFourFour);
+
+        assertThat(scoreSixteen.getTotalScore()).isEqualTo(16);
+    }
+
+    @Test
+    public void should_not_score_fourOfKind() {
+        Roll anyRoll = new Roll(3, 4, 4, 6, 4);
+        Score scoreZero = new Score();
+
+        scoreZero.scoreFourOfKind(anyRoll);
+
+        assertThat(scoreZero.getTotalScore()).isEqualTo(0);
     }
 
     @Test

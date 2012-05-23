@@ -12,24 +12,24 @@ import static org.fest.assertions.Assertions.assertThat;
  * Date: 23/05/12
  * Time: 08:01
  */
-public class PairAsserterTest {
+public class KindAsserterTest {
 
     @Test
     public void testOnCountEqualTo() {
-        assertThat(PairAsserter.onCountEqualTo(2).apply(getData(1, 2))).isTrue();
-        assertThat(PairAsserter.onCountEqualTo(2).apply(getData(1, 1))).isFalse();
+        assertThat(KindAsserter.onCountEqualTo(2).apply(getData(1, 2))).isTrue();
+        assertThat(KindAsserter.onCountEqualTo(2).apply(getData(1, 1))).isFalse();
     }
 
     @Test
     public void testExtractRoll() {
-        assertThat(PairAsserter.extractPoints().convert(getData(1, 5))).isEqualTo(5);
+        assertThat(KindAsserter.extractPoints().convert(getData(1, 5))).isEqualTo(5);
     }
 
     @Test
     public void should_have_no_pair() {
         Roll anyRoll = new Roll(1, 2, 3, 4, 5);
 
-        Integer points = new PairAsserter().givePoints(anyRoll);
+        Integer points = new KindAsserter(2).givePoints(anyRoll);
 
         assertThat(points).isEqualTo(0);
     }
@@ -38,7 +38,7 @@ public class PairAsserterTest {
     public void should_have_one_pair_of_one() {
         Roll pairOfOne = new Roll(1, 1, 3, 4, 5);
 
-        Integer points = new PairAsserter().givePoints(pairOfOne);
+        Integer points = new KindAsserter(2).givePoints(pairOfOne);
 
         assertThat(points).isEqualTo(2);
     }
@@ -47,7 +47,7 @@ public class PairAsserterTest {
     public void should_have_one_pair_of_five() {
         Roll pairOfOne = new Roll(1, 1, 3, 5, 5);
 
-        Integer points = new PairAsserter().givePoints(pairOfOne);
+        Integer points = new KindAsserter(2).givePoints(pairOfOne);
 
         assertThat(points).isEqualTo(10);
     }

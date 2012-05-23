@@ -20,13 +20,17 @@ import static org.xbucchiotty.yahtzee.Points.ZERO;
  * Date: 22/05/12
  * Time: 17:14
  */
-public class PairAsserter implements CategoryAsserter {
+public class KindAsserter implements CategoryAsserter {
 
-    private static final int PAIR = 2;
+    private final int numberOfKindRequested;
+
+    public KindAsserter(int numberOfKindRequested) {
+        this.numberOfKindRequested = numberOfKindRequested;
+    }
 
     @Override
     public Integer givePoints(Roll roll) {
-        return highestRollWithRequiredCount(roll, PAIR);
+        return highestRollWithRequiredCount(roll, numberOfKindRequested);
     }
 
     private Integer highestRollWithRequiredCount(Roll roll, int requiredCount) {

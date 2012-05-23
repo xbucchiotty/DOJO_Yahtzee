@@ -9,6 +9,11 @@ import static org.xbucchiotty.yahtzee.categoryasserter.SerieAsserter.Serie;
  */
 public class CategoryAsserters {
 
+    private static final int PAIR = 2;
+    private static final int THREE_OF_KIND = 3;
+    private static final int FOUR_OF_KIND = 4;
+
+
     public static CategoryAsserter yahtzee() {
         return new YahtzeeAsserter();
     }
@@ -22,6 +27,14 @@ public class CategoryAsserters {
     }
 
     public static CategoryAsserter pair() {
-        return new PairAsserter();
+        return new KindAsserter(PAIR);
+    }
+
+    public static CategoryAsserter threeOfKind() {
+        return new KindAsserter(THREE_OF_KIND);
+    }
+
+    public static CategoryAsserter fourOfKind() {
+        return new KindAsserter(FOUR_OF_KIND);
     }
 }

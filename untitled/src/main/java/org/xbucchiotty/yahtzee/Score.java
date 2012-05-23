@@ -7,7 +7,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static com.google.common.collect.Sets.newHashSet;
-import static org.xbucchiotty.utils.function.FunctionHelper.*;
+import static org.xbucchiotty.utils.function.FunctionHelper.map;
+import static org.xbucchiotty.utils.function.FunctionHelper.reduce;
 import static org.xbucchiotty.yahtzee.Functions.sum;
 import static org.xbucchiotty.yahtzee.Points.ZERO;
 import static org.xbucchiotty.yahtzee.categoryasserter.CategoryAsserters.*;
@@ -25,6 +26,8 @@ public class Score {
     private final Map<Serie, Category> series;
     final Collection<Category> categoriesScored = newHashSet();
     private final Category pair = new Category(pair());
+    private final Category threeOfKind = new Category(threeOfKind());
+    private final Category fourOfKind = new Category(fourOfKind());
 
     public Score() {
         series = new HashMap<Serie, Category>();
@@ -68,6 +71,14 @@ public class Score {
 
     public void scorePair(Roll roll) {
         registerScore(roll, pair);
+    }
+
+    public void scoreThreeOfKind(Roll roll) {
+        registerScore(roll, threeOfKind);
+    }
+
+    public void scoreFourOfKind(Roll roll) {
+        registerScore(roll, fourOfKind);
     }
 
     void registerScore(Roll roll, Category category) {
