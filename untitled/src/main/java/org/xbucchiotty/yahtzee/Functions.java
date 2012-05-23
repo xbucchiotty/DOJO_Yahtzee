@@ -1,9 +1,12 @@
 package org.xbucchiotty.yahtzee;
 
+import com.google.common.base.Optional;
 import com.google.common.base.Predicate;
 import org.xbucchiotty.utils.function.Reducer;
 
 import javax.annotation.Nullable;
+
+import static com.google.common.base.Optional.fromNullable;
 
 /**
  * User: xbucchiotty
@@ -28,18 +31,43 @@ public abstract class Functions {
         };
     }
 
-    public static Reducer<Integer, Integer> sum() {
-        return new Reducer<Integer, Integer>() {
+    public static Reducer<Integer, Optional<Integer>> sum() {
+        return new Reducer<Integer, Optional<Integer>>() {
             private Integer sum = 0;
 
             @Override
             public void agrege(Integer integer) {
-                sum += integer;
+                if (integer != null) {
+
+                    sum += integer;
+                }
             }
 
             @Override
-            public Integer getResult() {
-                return sum;
+            public Optional<Integer> getResult() {
+                return fromNullable(sum);
+            }
+        };
+    }
+
+    public static <E extends Comparable<E>> Reducer<E, Optional<E>> getHighest() {
+        return new Reducer<E, Optional<E>>() {
+            E highestElement = null;
+
+            @Override
+            public void agrege(E e) {
+                if (highestElement == null) {
+                    highestElement = e;
+                } else {
+                    if (e.compareTo(highestElement) > 0) {
+                        highestElement = e;
+                    }
+                }
+            }
+
+            @Override
+            public Optional<E> getResult() {
+                return Optional.fromNullable(highestElement);
             }
         };
     }

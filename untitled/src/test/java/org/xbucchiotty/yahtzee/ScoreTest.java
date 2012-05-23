@@ -1,8 +1,10 @@
 package org.xbucchiotty.yahtzee;
 
 import org.junit.Test;
+import org.xbucchiotty.yahtzee.categoryasserter.CategoryAsserter;
 
 import static org.fest.assertions.Assertions.assertThat;
+import static org.mockito.Mockito.*;
 
 /**
  * User: xbucchiotty
@@ -127,4 +129,24 @@ public class ScoreTest {
         assertThat(scoreEighteen.getTotalScore()).isEqualTo(18);
     }
 
+    @Test
+    public void should_score_pairOf5() {
+        Roll givenRollWithOneSix = new Roll(1, 1, 5, 5, 6);
+        Score scoreSix = new Score();
+
+        scoreSix.scorePair(givenRollWithOneSix);
+
+        assertThat(scoreSix.getTotalScore()).isEqualTo(10);
+    }
+
+    @Test
+    public void testRegisterScore() {
+        Category mock = spy(new Category(mock(CategoryAsserter.class)));
+        Roll roll = new Roll(1, 1, 1, 1, 1);
+        Score score = new Score();
+        score.registerScore(roll, mock);
+
+        assertThat(score.categoriesScored).hasSize(1);
+        verify(mock, times(1)).registerRoll(roll);
+    }
 }

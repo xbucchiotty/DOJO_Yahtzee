@@ -4,6 +4,7 @@ import org.xbucchiotty.yahtzee.Roll;
 
 import static org.xbucchiotty.utils.function.FunctionHelper.reduce;
 import static org.xbucchiotty.yahtzee.Functions.sum;
+import static org.xbucchiotty.yahtzee.Points.ZERO;
 
 /**
  * User: xbucchiotty
@@ -14,6 +15,6 @@ public class ChanceAsserter implements CategoryAsserter {
 
     @Override
     public Integer givePoints(Roll roll) {
-        return reduce(sum(), roll.getRolls());
+        return reduce(sum(), roll.getRolls()).or(ZERO);
     }
 }

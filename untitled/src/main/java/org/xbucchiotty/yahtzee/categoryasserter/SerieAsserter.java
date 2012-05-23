@@ -9,6 +9,7 @@ import static com.google.common.base.Predicates.equalTo;
 import static com.google.common.collect.Iterables.filter;
 import static org.xbucchiotty.utils.function.FunctionHelper.reduce;
 import static org.xbucchiotty.yahtzee.Functions.sum;
+import static org.xbucchiotty.yahtzee.Points.ZERO;
 
 /**
  * User: xbucchiotty
@@ -33,7 +34,7 @@ public class SerieAsserter implements CategoryAsserter {
                         equalTo(serie.getIndex()
                         )
                 )
-        );
+        ).or(ZERO);
     }
 
 

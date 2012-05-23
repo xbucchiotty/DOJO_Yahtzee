@@ -20,4 +20,8 @@ public class CategoryAsserters {
     public static CategoryAsserter serie(Serie serie) {
         return new SerieAsserter(serie);
     }
+
+    public static CategoryAsserter pair() {
+        return new PairAsserter();
+    }
 }

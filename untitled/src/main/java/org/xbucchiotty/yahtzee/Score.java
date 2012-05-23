@@ -7,9 +7,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static com.google.common.collect.Sets.newHashSet;
-import static org.xbucchiotty.utils.function.FunctionHelper.map;
-import static org.xbucchiotty.utils.function.FunctionHelper.reduce;
+import static org.xbucchiotty.utils.function.FunctionHelper.*;
 import static org.xbucchiotty.yahtzee.Functions.sum;
+import static org.xbucchiotty.yahtzee.Points.ZERO;
 import static org.xbucchiotty.yahtzee.categoryasserter.CategoryAsserters.*;
 import static org.xbucchiotty.yahtzee.categoryasserter.SerieAsserter.Serie;
 
@@ -23,7 +23,8 @@ public class Score {
     private final Category yahtzee = new Category(yahtzee());
     private final Category chance = new Category(chance());
     private final Map<Serie, Category> series;
-    private final Collection<Category> categoriesScored = newHashSet();
+    final Collection<Category> categoriesScored = newHashSet();
+    private final Category pair = new Category(pair());
 
     public Score() {
         series = new HashMap<Serie, Category>();
@@ -34,51 +35,61 @@ public class Score {
     }
 
     public void scoreYahtzee(Roll roll) {
-        yahtzee.registerRoll(roll);
-        categoriesScored.add(yahtzee);
+        registerScore(roll, yahtzee);
     }
 
     public void scoreChance(Roll roll) {
-        chance.registerRoll(roll);
-        categoriesScored.add(chance);
+        registerScore(roll, chance);
     }
 
     public void scoreSerieOne(Roll roll) {
-        scoreSerie(roll, Serie.ONE);
+        registerScore(roll, Serie.ONE);
     }
 
     public void scoreSerieTwo(Roll roll) {
-        scoreSerie(roll, Serie.TWO);
+        registerScore(roll, Serie.TWO);
     }
 
     public void scoreSerieThree(Roll roll) {
-        scoreSerie(roll, Serie.THREE);
+        registerScore(roll, Serie.THREE);
     }
 
     public void scoreSerieFour(Roll roll) {
-        scoreSerie(roll, Serie.FOUR);
+        registerScore(roll, Serie.FOUR);
     }
 
     public void scoreSerieFive(Roll roll) {
-        scoreSerie(roll, Serie.FIVE);
+        registerScore(roll, Serie.FIVE);
     }
 
     public void scoreSerieSix(Roll roll) {
-        scoreSerie(roll, Serie.SIX);
+        registerScore(roll, Serie.SIX);
     }
 
-    private void scoreSerie(Roll roll, Serie serie) {
+    public void scorePair(Roll roll) {
+        registerScore(roll, pair);
+    }
+
+    void registerScore(Roll roll, Category category) {
+        category.registerRoll(roll);
+        categoriesScored.add(category);
+    }
+
+    private void registerScore(Roll roll, Serie serie) {
         Category category = series.get(serie);
         category.registerRoll(roll);
         categoriesScored.add(category);
     }
 
     public Integer getTotalScore() {
-        return reduce(
-                sum(),
-                map(
-                        getPoints(),
-                        categoriesScored));
+        return
+                reduce(
+                        sum(),
+                        map(
+                                getPoints(),
+                                categoriesScored
+                        )
+                ).or(ZERO);
     }
 
     private Converter<Category, Integer> getPoints() {

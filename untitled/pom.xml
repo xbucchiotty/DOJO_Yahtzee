@@ -13,4 +13,16 @@
     <artifactId>yahtzee</artifactId>
     <version>1.0</version>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.xbucchiotty</groupId>
+            <artifactId>utils</artifactId>
+            <version>${util.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+        </dependency>
+    </dependencies>
+
 </project>
