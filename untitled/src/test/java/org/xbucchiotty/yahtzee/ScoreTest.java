@@ -190,6 +190,16 @@ public class ScoreTest {
     }
 
     @Test
+    public void should_score_small_straight() {
+        Roll givenRollWithSmallStraight = new Roll(1, 2, 3, 4, 5);
+
+        Score scoreFifteen = new Score();
+        scoreFifteen.scoreSmallStraight(givenRollWithSmallStraight);
+
+        assertThat(scoreFifteen).isEqualTo(15);
+    }
+
+    @Test
     public void testRegisterScore() {
         Category mock = spy(new Category(mock(CategoryAsserter.class)));
         Roll roll = new Roll(1, 1, 1, 1, 1);

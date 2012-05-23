@@ -13,6 +13,9 @@ import static java.util.Collections.unmodifiableList;
  * Time: 09:15
  */
 public class Roll {
+
+    public static final int SIZE = 5;
+
     private final Collection<Integer> rolls;
 
     public Roll(@NotNull Integer i, @NotNull Integer i1, @NotNull Integer i2, @NotNull Integer i3, @NotNull Integer i4) {

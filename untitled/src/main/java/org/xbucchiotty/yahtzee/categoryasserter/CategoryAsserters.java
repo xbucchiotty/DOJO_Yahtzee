@@ -41,4 +41,8 @@ public class CategoryAsserters {
     public static CategoryAsserter fullHouse() {
         return new FullHouseAsserter();
     }
+
+    public static CategoryAsserter smallStraight() {
+        return new SmallStraightAsserter();
+    }
 }

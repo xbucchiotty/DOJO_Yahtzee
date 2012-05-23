@@ -30,6 +30,7 @@ public class Score {
     private final Category fourOfKind = new Category(fourOfKind());
     private final Category twoPairs = new Category(twoPairs());
     private final Category fullHouse = new Category(fullHouse());
+    private final Category smallStraight = new Category(smallStraight());
 
     public Score() {
         series = new HashMap<Serie, Category>();
@@ -89,6 +90,10 @@ public class Score {
 
     public void scoreFullHouse(Roll roll) {
         registerScore(roll, fullHouse);
+    }
+
+    public void scoreSmallStraight(Roll roll) {
+        registerScore(roll, smallStraight);
     }
 
     void registerScore(Roll roll, Category category) {
